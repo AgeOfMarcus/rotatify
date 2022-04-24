@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 from io import BytesIO
+from base64 import b64encode
 
 @st.cache
 def make_it_spin(img, inc=10, speed=33):
@@ -23,7 +24,7 @@ def make_it_spin(img, inc=10, speed=33):
         duration=speed,
     )
     imfile.seek(0)
-    return Image.open(imfile)
+    return 'data:image/gif;base64,' + b64encode(imfile.read()).decode('utf-8')
 
 st.title('Rotatify')
 st.write('Turn any static image into a rotating gif ([source code](https://github.com/AgeOfMarcus/rotatify)).')
@@ -38,5 +39,6 @@ with st.form('image_upload'):
         if image_file:
             img = Image.open(image_file)
             res = make_it_spin(img, inc=increment, speed=duration)
-            st.image(res)
-        st.error('No image provided')
+            st.markdown(f'![result.gif]({res})')
+        else:
+            st.error('No image provided!')
