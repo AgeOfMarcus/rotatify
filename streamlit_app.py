@@ -37,6 +37,6 @@ with st.form('image_upload'):
     if submitted:
         if image_file:
             img = Image.open(image_file)
-            res = make_it_spin(img, inc=increment, speed=speed)
+            res = make_it_spin(img, inc=increment, speed=duration)
             st.image(res)
         st.error('No image provided')
