@@ -1,1 +1,0 @@
-web: sh heroku_setup.sh && streamlit run streamlit_app.py
