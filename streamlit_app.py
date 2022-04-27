@@ -3,7 +3,7 @@ from PIL import Image
 from io import BytesIO
 from base64 import b64encode
 
-@st.cache
+#@st.cache
 def make_it_spin(img, inc=10, speed=33):
     # build sequence (from @turbio/rotatify)
     img = img.convert(mode="RGBA")
